@@ -24,6 +24,12 @@ describe DockingStation do
     end
   end
 
+describe '#dock' do
+  it "Raises an error if at capacity" do
+    bike = Bike.new
+    subject.dock(bike)
+    expect {subject.dock(bike)}.to raise_error 'No space available'
+  end
 
   it "docks something" do
     bike = Bike.new
@@ -35,6 +41,8 @@ describe DockingStation do
     subject.dock(bike)
     expect(subject.bike).to eq bike
   end
+
+end
 
   it "returns the attribute of the docked bike" do
     bike = Bike.new
