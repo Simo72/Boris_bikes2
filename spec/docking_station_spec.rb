@@ -24,4 +24,8 @@ describe DockingStation do
     subject.dock(bike)
     expect(subject.bike).to eq bike
   end
+
+  it "returns the attribute of the docked bike" do
+    expect(subject.bike_available?).to eq true
+  end
 end
