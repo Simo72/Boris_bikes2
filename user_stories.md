@@ -9,7 +9,7 @@ Docking Station | release_a_bike
                 | dock_a_bike
                 | bike_available?
                 | dock_at_capacity?
-Maintainer      |
+Maintainer      | 
 
 
 ## Relationship Diagrams
