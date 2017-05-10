@@ -6,6 +6,19 @@ describe DockingStation do
   it { is_expected.to respond_to :bike }
   it { is_expected.to respond_to :bike_available? }
 
+  describe '#release_bike' do
+    it "releases a bike" do
+      bike = Bike.new
+      subject.dock(bike)
+      expect(subject.release_bike).to eq bike
+    end
+
+    it "raises error when no bikes available" do
+      expect{ subject.release_bike }.to raise_error 'No bikes available'
+    end
+  end
+
+
   it "'releases' an instance of the Bike class" do
     expect(subject.release_bike.class).to eq Bike
   end
@@ -26,6 +39,11 @@ describe DockingStation do
   end
 
   it "returns the attribute of the docked bike" do
-    expect(subject.bike_available?).to eq true
+    bike = Bike.new
+    expect(subject.bike_available?(bike)).to eq bike
+  end
+
+  it "raises an error" do
+    expect { subject.bike_available?(bike) }.to raise_error(NameError)
   end
 end
