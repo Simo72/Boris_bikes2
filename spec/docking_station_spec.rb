@@ -19,10 +19,6 @@ describe DockingStation do
   end
 
 
-  it "'releases' an instance of the Bike class" do
-    expect(subject.release_bike.class).to eq Bike
-  end
-
   it "'releases' a working bike" do
     expect(subject.release_bike.working?).to eq true
   end
