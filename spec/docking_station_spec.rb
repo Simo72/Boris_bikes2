@@ -4,6 +4,7 @@ describe DockingStation do
   it { is_expected.to respond_to :release_bike }
   it { is_expected.to respond_to(:dock).with(1).argument }
   it { is_expected.to respond_to :bike }
+  it { is_expected.to respond_to :bike_available? }
 
   it "'releases' an instance of the Bike class" do
     expect(subject.release_bike.class).to eq Bike
