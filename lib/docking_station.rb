@@ -11,11 +11,13 @@ class DockingStation
 
   def release_bike
     fail "No bikes available" if empty?
+    fail "Bike Broken" unless @bikes.last.status
     @bikes.pop
   end
 
-  def dock(bike)
+  def dock(bike, status=true)
     fail "No space available" if full?
+    bike.status = status
     @bikes << bike
   end
 
@@ -32,13 +34,4 @@ class DockingStation
   def empty?
     @bikes.empty?
   end
-
 end
-
-p docking_station = DockingStation.new(2)
-p bike = Bike.new
-p bike_two = Bike.new
-docking_station.dock(bike)
-docking_station.dock(bike_two)
-docking_station.dock(Bike.new)
-p docking_station.bikes
