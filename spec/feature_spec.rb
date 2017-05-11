@@ -25,3 +25,14 @@ require './lib/docking_station.rb'
 # puts "I want to dock a broken bike"
 # broken_bike = Bike.new
 # docking_station.dock(broken_bike, false)
+
+
+#ex_18
+docking_station = DockingStation.new
+p bike = Bike.new
+p bike_two = Bike.new
+bike_two.report_broken
+p docking_station.dock(bike)
+p docking_station.dock(bike_two)
+p docking_station.release_bike
+p docking_station.bikes

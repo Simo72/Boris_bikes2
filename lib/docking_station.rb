@@ -11,13 +11,14 @@ class DockingStation
 
   def release_bike
     fail "No bikes available" if empty?
-    fail "Bike Broken" unless @bikes.last.status
-    @bikes.pop
+    fail "No working bikes available" if  working_bikes.empty?
+    @bikes.delete(working_bikes.pop)
+
+
   end
 
-  def dock(bike, status=true)
+  def dock(bike)
     fail "No space available" if full?
-    bike.status = status
     @bikes << bike
   end
 
@@ -34,4 +35,10 @@ class DockingStation
   def empty?
     @bikes.empty?
   end
+
+  def working_bikes
+    @bikes.reject{|bike| bike.broken?}
+  end
+
 end
+
