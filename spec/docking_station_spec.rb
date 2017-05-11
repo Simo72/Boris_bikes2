@@ -53,7 +53,8 @@ describe DockingStation do
   end
 
   it 'checks to see if the dock is full' do
-    expect(subject.full?).to eq true
+    19.times { subject.dock(Bike.new) }
+    expect(subject.full?).to eq false
   end
 
 end

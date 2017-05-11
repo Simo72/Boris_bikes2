@@ -13,7 +13,7 @@ class DockingStation
   end
 
   def dock(bike)
-    fail "No space available" if @bikes.count >= 20
+    fail "No space available"  if full?
     @bikes << bike
   end
 
@@ -22,6 +22,6 @@ class DockingStation
   end
 
   def full?
-    true
+    @bikes.count >= 20
   end
 end
