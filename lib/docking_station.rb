@@ -26,7 +26,7 @@ class DockingStation
   private
 
   def full?
-    @bikes.count >= DEFAULT_CAPACITY
+    @bikes.count >= @capacity
   end
 
   def empty?
@@ -35,4 +35,10 @@ class DockingStation
 
 end
 
-p docking_station = DockingStation.new()
+p docking_station = DockingStation.new(2)
+p bike = Bike.new
+p bike_two = Bike.new
+docking_station.dock(bike)
+docking_station.dock(bike_two)
+docking_station.dock(Bike.new)
+p docking_station.bikes
