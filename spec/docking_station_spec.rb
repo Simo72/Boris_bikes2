@@ -56,7 +56,8 @@ describe DockingStation do
     expect { subject.bike_available?(bike) }.to raise_error(NameError)
   end
 
-
-
+  it "checks if capacity is equal to DEFAULT CAPACITY when no argument passed" do
+      expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
 
 end
