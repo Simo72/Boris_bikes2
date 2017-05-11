@@ -5,6 +5,7 @@ describe DockingStation do
   it { is_expected.to respond_to(:dock).with(1).argument }
   it { is_expected.to respond_to :bikes }
   it { is_expected.to respond_to :bike_available? }
+  it { is_expected.to respond_to :full?}
 
   describe '#release_bike' do
     it "releases a bike" do
@@ -50,4 +51,9 @@ describe DockingStation do
   it "raises an error" do
     expect { subject.bike_available?(bike) }.to raise_error(NameError)
   end
+
+  it 'checks to see if the dock is full' do
+    expect(subject.full?).to eq true
+  end
+
 end

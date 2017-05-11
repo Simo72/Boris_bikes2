@@ -21,4 +21,7 @@ class DockingStation
     @bikes = bike
   end
 
+  def full?
+    true
+  end
 end
