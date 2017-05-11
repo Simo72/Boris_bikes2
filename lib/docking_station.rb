@@ -20,6 +20,8 @@ class DockingStation
   def bike_available?(bike)
     @bikes = bike
   end
+  
+  private
 
   def full?
     @bikes.count >= 20
