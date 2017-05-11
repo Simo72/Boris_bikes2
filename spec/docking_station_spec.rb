@@ -6,6 +6,7 @@ describe DockingStation do
   it { is_expected.to respond_to :bikes }
   it { is_expected.to respond_to :bike_available? }
   it { is_expected.to respond_to :full?}
+  it { is_expected.to respond_to :empty?}
 
   describe '#release_bike' do
     it "releases a bike" do
@@ -55,6 +56,15 @@ describe DockingStation do
   it 'checks to see if the dock is full' do
     19.times { subject.dock(Bike.new) }
     expect(subject.full?).to eq false
+  end
+
+  it 'checks to see if the dock is empty' do
+    
+    expect(subject.empty?).to eq true
+    bike = Bike.new
+    subject.dock(bike)
+    expect(subject.empty?).to eq false
+  
   end
 
 end
