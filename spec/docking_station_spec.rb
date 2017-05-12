@@ -15,44 +15,41 @@ describe DockingStation do
   describe '#release_bike' do
     let(:bike) { double :bike }
 
-    it "releases a bike" do
-      subject.dock double(:bike)
-      bike = subject.release_bike
-      expect(bike).to eq bike
-    end
-
     it "raises error when no bikes available" do
       expect { subject.release_bike }.to raise_error 'No bikes available'
     end
-    
+
     it "'releases' a working bike" do
       allow(bike).to receive(:working?).and_return(true)
+      allow(bike).to receive(:broken?)
       subject.dock(bike)
       released_bike = subject.release_bike
-      expect(released_bike).to be_working?
+      expect(released_bike).to be_working
     end
 
     it "does not 'releases' a broken bike" do
-      bike = subject.dock double(:bike)
-      bike.report_broken 
+      allow(bike).to receive(:report_broken)
+      allow(bike).to receive(:broken?).and_return(true)
+      subject.dock(bike)
+      bike.report_broken
       expect { subject.release_bike }.to raise_error "No working bikes available"
     end
 
   end
 
   describe '#dock' do
+    let(:bike) { double :bike }
     it "Raises an error if at capacity" do
       DockingStation::DEFAULT_CAPACITY.times { subject.dock double(:bike) }
       expect { subject.dock double(:bike) }.to raise_error 'No space available'
     end
 
     it "docks something" do
-      bike = subject.dock double(:bike)
-      expect(bike).to eq [bike]
+      expect(subject.dock(bike)).to eq [bike]
     end
 
-    it "returns docked bikes" do
-      bike = subject.dock double(:bike)
+    it "checks if bikes within docking station" do
+      subject.dock(bike)
       expect(subject.bikes).to eq [bike]
     end
   end
